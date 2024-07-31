@@ -9,29 +9,15 @@ def pascal_triangle(n):
     representing the Pascal Triangle of n
     returns empty list if n <= 0
     """
-    pascal_triangle = list()
-
     if n <= 0:
-        return pascal_triangle
+        return []
 
-    # Add first 1.
-    if n > 0:
-        pascal_triangle.append([1])
-
-    # Add second line.
-    if n > 1:
-        pascal_triangle.append([1, 1])
-
-    for x in range(3, n+1):
-        pascal_triangle.append([0] * x)
-
-        # Set first and last 1
-        pascal_triangle[x-1][0] = 1
-        pascal_triangle[x-1][x-1] = 1
-
-        # Calculate middle numbers
-        for y in range(1, x-1):
-            pascal_triangle[x-1][y] = \
-                pascal_triangle[x-2][y-1] + pascal_triangle[x-2][y]
-
-    return pascal_triangle
+    triangle = []
+    row = []
+    prev_row = []
+    for m in range(0, n + 1):
+        row = [k > 0 and k < m - 1 and m > 2 and prev_row[k-1] +
+               prev_row[k] or 1 for k in range(0, m)]
+        prev_row = row
+        triangle += [row]
+    return triangle[1:]
