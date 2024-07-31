@@ -1,4 +1,4 @@
-def pascal_triangle(n):
+def pascal_triangle(n=0):
     triangle = []
 
     if n <= 0:
