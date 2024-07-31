@@ -14,3 +14,5 @@ def pascal_triangle(n):
                 new.append(old[y - 1] + old[y])
         
         triangle.append(new)
+    
+    return triangle
